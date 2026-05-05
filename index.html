@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>hey you</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, serif;
+      background:
+        linear-gradient(rgba(255, 154, 158, 0.65), rgba(250, 208, 196, 0.8)),
+        url("https://i.pinimg.com/736x/26/99/f5/2699f5024cdbaa2d42cca28fd930a51e.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      transition: background 1s ease;
+      overflow-x: hidden;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(10px);
+      padding: 32px;
+      border-radius: 18px;
+      max-width: 560px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+      animation: fadeIn 1.2s ease;
+      z-index: 2;
+    }
+
+    img {
+      width: 170px;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: 0.8s ease;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin: 8px 0 16px;
+      font-weight: normal;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    button {
+      margin-top: 14px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-family: Georgia, serif;
+      background: white;
+      color: #c85c72;
+      font-size: 15px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    #hiddenMessage {
+      display: none;
+      margin-top: 24px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .small {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-top: 18px;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      color: rgba(255,255,255,0.75);
+      font-size: 28px;
+      animation: floatUp 8s infinite ease-in;
+      z-index: 1;
+    }
+
+    .heart.one {
+      left: 20%;
+      animation-delay: 0s;
+    }
+
+    .heart.two {
+      left: 50%;
+      animation-delay: 2s;
+    }
+
+    .heart.three {
+      left: 75%;
+      animation-delay: 4s;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="heart one">♡</div>
+  <div class="heart two">♡</div>
+  <div class="heart three">♡</div>
+
+  <audio id="music" loop>
+    <source id="musicSource" src="KaliUchis.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="box">
+    <img id="mainImage" src="https://i.pinimg.com/736x/26/99/f5/2699f5024cdbaa2d42cca28fd930a51e.jpg">
+
+    <h1>hey...</h1>
+
+    <p>
+      I know things have been heavy lately.
+      I just wanted to make you something small, soft, and quiet.
+    </p>
+
+    <button onclick="playMusic()">play the song</button>
+    <br>
+
+    <button onclick="showMessage()">click if you want</button>
+    <br>
+
+    <button onclick="changeMood()">change the mood</button>
+
+    <p id="hiddenMessage">
+      You do not have to have everything figured out right now.
+      You are still here, still trying, and that matters more than you know. I know Pony Town was more than just a game to you.
+  It held memories, characters, and pieces of your creativity.
+
+  Losing that hurts, and you are allowed to be upset about it.
+  But it does not erase who you are, what you made,
+  or the joy you can still create again.
+
+  I hope this gives you a soft place to breathe for a minute.
+    </p>
+
+    <p class="small">
+      With very much love. Edifisio
+    </p>
+  </div>
+
+  <script>
+    let moodChanged = false;
+
+    function playMusic() {
+      const music = document.getElementById("music");
+      music.play();
+    }
+
+    function showMessage() {
+      document.getElementById("hiddenMessage").style.display = "block";
+    }
+
+    function changeMood() {
+      const mainImage = document.getElementById("mainImage");
+      const music = document.getElementById("music");
+      const musicSource = document.getElementById("musicSource");
+
+      if (moodChanged === false) {
+        document.body.style.background =
+          "linear-gradient(rgba(161, 140, 209, 0.65), rgba(251, 194, 235, 0.8)), url('https://i.pinimg.com/736x/fd/bb/89/fdbb896cc64c36833f32045d734055de.jpg')";
+
+        mainImage.src =
+          "https://i.pinimg.com/736x/fd/bb/89/fdbb896cc64c36833f32045d734055de.jpg";
+
+        musicSource.src = "Kali.mp3";
+        music.load();
+        music.play();
+
+        moodChanged = true;
+      } else {
+        document.body.style.background =
+          "linear-gradient(rgba(255, 154, 158, 0.65), rgba(250, 208, 196, 0.8)), url('https://i.pinimg.com/736x/26/99/f5/2699f5024cdbaa2d42cca28fd930a51e.jpg')";
+
+        mainImage.src =
+          "https://i.pinimg.com/736x/26/99/f5/2699f5024cdbaa2d42cca28fd930a51e.jpg";
+
+        musicSource.src = "KaliUchis.mp3";
+        music.load();
+        music.play();
+
+        moodChanged = false;
+      }
+
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+    }
+  </script>
+</body>
+</html>
